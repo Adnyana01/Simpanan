@@ -1,0 +1,96 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+p{
+    font-size: 1.5rem;
+}
+.logo{
+    background: rgba($color: #0b59a1, $alpha: 1.0);
+    & img{
+        width: 25vw;
+    }
+    & h1{
+        font-size: 5vw;
+        font-family: Helvetica, sans-serif;
+        font-weight: bolder;
+        color: aliceblue;
+    }
+} 
+.pembatas{
+    background-color: black !important;
+    width: 100%;
+    height: 5px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.menuItem{
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: 1s;
+    &.show{
+        opacity: 100;
+        transform: translateX(0px);
+        transition: 1s;
+        & p{
+            font-family: 'Montserrat';
+            font-weight: bold;
+        }
+    }
+    &:hover{
+        transform: translateY(-30px);
+    }
+}
+
+
+// Media Query
+    @media only screen and (min-width: 620px){
+        p{
+            font-size: 2rem;
+        }
+        .menu-icon{
+            width: 100px;
+            margin-bottom: 7px;
+        }
+        .menu-title{
+            justify-content: center;
+        }
+    }
+
+// =========================================================
+
+.gantt-container{
+    position: fixed !important;
+    height: 90vh;
+    width: 95vw;
+    z-index: 9999;
+    top: 15vh;
+    left: 5vh;
+  }
+  #gantt_here{
+    height: 500px;
+  }
+  .gantt_tree_content {
+      overflow:hidden;
+      text-overflow: ellipsis;
+  }
+  .styleGridRow{
+    font-family: Georgia, 'Times New Roman', Times, serif !important; 
+    font-size: 7px !important;
+    font-weight: bold !important;
+  }
+  select{
+    width: 100%;
+    height: 54%;
+    border-radius: 5px;
+  }
+  .wrapper{
+    overflow-x: hidden;
+  }
+  #new_child_here .frame-child:hover{
+    transform: translate(50px, 50px);
+  }
+
+
