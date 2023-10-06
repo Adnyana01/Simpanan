@@ -8,13 +8,25 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
     <style>
-      .container-fluid{
-        background: hsla(0, 0%, 5%, 1);
-        background: linear-gradient(45deg, hsla(0, 0%, 5%, 1) 0%, hsla(0, 0%, 64%, 1) 100%);
-        background: -moz-linear-gradient(45deg, hsla(0, 0%, 5%, 1) 0%, hsla(0, 0%, 64%, 1) 100%);
-        background: -webkit-linear-gradient(45deg, hsla(0, 0%, 5%, 1) 0%, hsla(0, 0%, 64%, 1) 100%);
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0c0c0c", endColorstr="#a2a2a2", GradientType=1 );
-        height: 100vh;
+      body{
+        font-family: Georgia, 'Times New Roman', Times, serif;
+      }
+      .login-container{
+        box-shadow: 1px 1px 5px black inset,5px 5px 10px 1px black;
+        overflow: hidden;
+      }
+      .login-container img{
+        width: 90px;
+        height: 90px;
+      }
+      .login-container input{
+        background-color: white;
+        border: 1px solid black;
+        transition: 1s;
+      }
+      .login-container input:hover{
+        background-color: white;
+        border: 1px solid black;
       }
         .info-massage{
             width: 50vw;
@@ -35,78 +47,77 @@
           filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#3bcfd4", endColorstr="#a2fc05", GradientType=1 );
         }
 
-        @media (min-width: 768px) {
-        .gradient-form {
-        height: 100vh !important;
-        }
-        }
-        @media (min-width: 769px) {
-        .gradient-custom-2 {
-        border-top-right-radius: .3rem;
-        border-bottom-right-radius: .3rem;
-        }
+        @media only screen and (max-width: 280px) {
+          .login-container{
+            font-size: 0.1rem !important;
+          }
+          .login-container img{
+            width: 70px;
+            height: 70px;
+          }
+          .login-container h1,
+          .login-container h5{
+            font-size: 20px;
+          }
         }
     </style>
 </head>
 <body>
-  <div class="container-fluid">
-    <div class="row d-flex justify-content-center align-items-center" >
-      <div class="col-10" >
-        <div class="card rounded-3 text-black">
-          <div class="row g-0">
-            <div class="col-lg-6">
-              <div class="card-body p-md-5 mx-md-4">
-
-                <div class="text-center">
-                  <img src="{{ asset('asset/img/BPS_Logo.png') }}"
-                    style="width: 165px;" alt="logo">
-                  <h4 class="mt-1 mb-5 pb-1">Badan Pusat Statistik Karangasem</h4>
+  <div class="container-fluid" >
+    <div class="row d-flex justify-content-center align-items-center" style="height: 100vh;">
+      <div class="col-lg-4 col-md-10 col-sm-10 col-10 bg-light border rounded p-3 d-flex justify-content-center align-items-center login-container">
+        <div class="container d-flex justify-content-center align-items-center p-3">
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="col">
+              <div class="container-fluid d-flex justify-content-center align-items-center pb-5">
+                <div class="row p-1">
+                  <div class="col">
+                    <img src="{{ asset('asset/img/BPS_Logo.png') }}" alt="">
+                  </div>
                 </div>
-
-
-                <form method="POST" action="post-login">
-                  @csrf
-                  <p>Please login to your account</p>
-
-                  <div class="form-outline mb-4">
-                    <label class="form-label" for="email">Email</label>
-                    <input type="email" id="email" name="email" class="form-control"
-                      placeholder="Your email address" required>
+                <div class="row p-1">
+                  <div class="col">
+                    <h1 class="h1">SIMPANAN</h1>
                   </div>
-                  @if($errors->has('email'))
-                    <div class="alert alert-warning" role="alert">{{ $errors->first('email') }}</div>
-                  @endif
-                  @if(session("masalah"))
-                    @if(array_key_exists("email",session("masalah")))                      
-                    <div class="alert alert-warning" role="alert">{{ session("masalah")['email'] }}</div>
-                    @endif
-                  @endif
-
-                  <div class="form-outline mb-4">
-                    <label class="form-label" for="password">Password</label>
-                    <input type="password" id="password" name="password" class="form-control" required minlength="7" maxlength="18">
-                  </div>
-                  @if($errors->has('password'))
-                    <div class="alert alert-warning" role="alert">{{ $errors->first('password') }}</div>
-                  @endif
-                  @if(session("masalah"))
-                  @if(array_key_exists("password",session("masalah")))                       
-                    <div class="alert alert-warning" role="alert">{{ session("masalah")['password'] }}</div>
-                    @endif
-                  @endif
-
-                  <div class="text-center pt-1 mb-5 pb-1">
-                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log
-                      in</button>
-                  </div>
-                </form>
-
+                </div>
               </div>
-            </div>
-            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
-              <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                <h4 class="mb-4">Sistem Informasi Simpanan Badan Pusat Statistik Kabupaten Karangasem</h4>
-              </div>
+              <form method="POST" action="post-login" class="">
+                @csrf
+                <h5 class="h5">Please login to your account</h5>
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="email">Email</label>
+                  <input type="email" id="email" name="email" class="form-control"
+                    placeholder="Your email address" required>
+                </div>
+                @if($errors->has('email'))
+                  <div class="alert alert-warning" role="alert">{{ $errors->first('email') }}</div>
+                @endif
+                @if(session("masalah"))
+                  @if(array_key_exists("email",session("masalah")))                      
+                  <div class="alert alert-warning" role="alert">{{ session("masalah")['email'] }}</div>
+                  @endif
+                @endif
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="password">Password</label>
+                  <input type="password" id="password" name="password" class="form-control" required minlength="7" maxlength="18" placeholder="Your Password" >
+                </div>
+                @if($errors->has('password'))
+                  <div class="alert alert-warning" role="alert">{{ $errors->first('password') }}</div>
+                @endif
+                @if(session("masalah"))
+                @if(array_key_exists("password",session("masalah")))                       
+                  <div class="alert alert-warning" role="alert">{{ session("masalah")['password'] }}</div>
+                  @endif
+                @endif
+
+                <div class="text-center pt-1 mb-5 pb-1">
+                  <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log
+                    in</button>
+                </div>
+              </form>
+
             </div>
           </div>
         </div>

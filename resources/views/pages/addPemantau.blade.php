@@ -80,9 +80,10 @@
 <div class="container-fluid selectedSlide editUserContainer">
     <div class="row d-flex justify-content-center mt-5">
         <div class="col-lg-8 col-md-10 col bg-light rounded">
-        <button class="btn btn-light" onclick="toggleAnimation({'.addPemantauContainer':['selectedSlide','slided'], '.dataUsersTabel':['slided', 'selectedSlide']})">Close Form</button>
-            <form action="addUser" method="post">
+        <button class="btn btn-light" onclick="toggleAnimation({'.editUserContainer':['selectedSlide','slided'], '.dataUsersTabel':['slided', 'selectedSlide']})">Close Form</button>
+            <form action="editUser" method="post">
                 @csrf
+              <input type="hidden" name="id" value="{{ $user->id }}">
               <label for="name" class="form-label">Nama</label>
               <input type="text" name="name" class="form-control" id="name" value="{{ $user->name }}" readonly>
               <label for="email" class="form-label">Email</label>
@@ -93,12 +94,18 @@
                 <option value="Pemantau">Pemantau</option>
               </select>
               <div class="d-flex justify-content-center m-3">
-                <button type="submit" class="btn btn-dark">Tambah</button>
+                <button type="submit" class="btn btn-dark">Edit</button>
               </div>
             </form>
         </div>
     </div>
 </div>
+
+<script src="{{ asset('asset/plugins/jquery/jquery.min.js')}}"></script>
+<script>
+    $('.dataUsersTabel').removeClass('selectedSlide');
+    $('.dataUsersTabel').addClass('slided');
+</script>
 @endforeach
 @endif
 

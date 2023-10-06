@@ -34,7 +34,13 @@ class NeracaController extends Controller
     // =============================Home ===============================================
     public function home()
     {
-        return view("/index", ["neracas" => $this->neraca->all()]);
+        $neracas = $this->neraca->all();
+
+        return view("/index", ["neracas" => $neracas]);
+    }
+    public function dataTahunHome(Request $request)
+    {
+        return view("/index", ["neracas" => $this->neraca->whereYear('tanggal_mulai', $request->tahun)->get()]);
     }
     // =============================Neraca Produksi Handler=============================
     // go to neraca produksi page
@@ -257,9 +263,35 @@ class NeracaController extends Controller
     {
         return redirect()->route('simpanan.goToAddPemantau')->with('userID', $id);
     }
+    public function editUser(Request $request)
+    {
+        $validate = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'role' => 'required'
+        ]);
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role
+        ];
+        $this->user->where('id', $request->id)->update($data);
+        return redirect('goToAddPemantau')->with(['success' => [$data['role'] . ':' . $data['name'] . " Berhasil diedit"]]);
+    }
+    public function deleteUser($id)
+    {
+        $user = $this->user->where('id', $id)->first();
+        $data = [
+            'name' => $user->name,
+            'role' => $user->role
+        ];
+
+        $this->user->where('id', $id)->delete();
+        return redirect('goToAddPemantau')->with(['success' => [$data['role'] . ':' . $data['name'] . " Berhasil dihapus"]]);
+    }
     // =================================================================================================
     // API to get Neraca data
-    public function __invoke(Request $request)
+    public function __invoke()
     {
         return response()->json([
             "data" => $this->helper->neracaJSON()

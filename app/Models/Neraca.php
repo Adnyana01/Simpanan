@@ -14,7 +14,10 @@ class Neraca extends Model
     protected $guarded = [
         "id", "created_at", "updated_at"
     ];
-
+    public function scopeYear($query, $year)
+    {
+        return $query->whereYear('tanggal_mulai', '=', $year);
+    }
     public function nList(): BelongsTo
     {
         return $this->belongsTo(KategoriNeraca::class, "kategori_neraca_id");

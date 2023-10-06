@@ -108,6 +108,11 @@ $userRole = Auth::user()->role;
         font-weight: bold !important;
       }
 
+      #pieChart, #lineChart {
+        height: 300px;
+        margin: 5px
+      }
+
       select {
         width: 100%;
         height: 54%;
@@ -127,7 +132,7 @@ $userRole = Auth::user()->role;
         transition: 1s;
       }
       .menu-home.active{
-        height: 100px;
+        height: 110px;
       }
       .show-table.hide{
         height: 0px;

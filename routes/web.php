@@ -25,10 +25,13 @@ Route::post('/post-login', [AuthController::class, 'postLogin'])->name('simpanan
 Route::middleware(['auth'])->group(function () {
     // Home
     Route::get('/home', [NeracaController::class, 'home'])->name('simpanan.home');
+    Route::post('/dataTahunHome', [NeracaController::class, 'dataTahunHome'])->name('simpanan.dataTahunHome');
     // Add Pemantau
     Route::get('/goToAddPemantau', [NeracaController::class, 'goToAddPemantau'])->name('simpanan.goToAddPemantau');
     Route::get('/updateDataUser{id}', [NeracaController::class, 'goToEditPemantau'])->name('user.edit');
-    Route::post('/addUser', [NeracaController::class, 'addUser'])->name('simpanan.addUser');
+    Route::post('/addUser', [NeracaController::class, 'addUser'])->name('user.add');
+    Route::post('/editUser', [NeracaController::class, 'editUser'])->name('user.edit');
+    Route::get('/deleteDataUser{id}', [NeracaController::class, 'deleteUser'])->name('user.delete');
     // Neraca Produksi
     Route::get('/neracaProduksi', [NeracaController::class, 'goToNProduksi'])->name("produksi.show");
     Route::post('/addProduksi', [NeracaController::class, 'NProduksiAdd'])->name("produksi.add");

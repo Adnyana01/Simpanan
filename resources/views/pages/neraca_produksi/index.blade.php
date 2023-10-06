@@ -78,11 +78,11 @@ $units = ["day","week","third-of-month",
                                     <th>Total(Sample)</th>
                                     <th>Target(Sample)</th>
                                     <th>Keterangan</th>
-                                    <th>TGL Mulai</th>
-                                    <th>TGL Berakhir</th>
                                     @if($userRole == 'Admin')
                                     <th>Option</th>
                                     @endif
+                                    <th>TGL Mulai</th>
+                                    <th>TGL Berakhir</th>
                                     <th>Data Lainnya</th>
                                 </tr>
                             </thead>
@@ -96,8 +96,6 @@ $units = ["day","week","third-of-month",
                                             <td>{{ $data->total_sample }}</td>
                                             <td>{{ $data->target_sample }}</td>
                                             <td>{{ $data->keterangan }}</td>
-                                            <td>{{ date_format(date_create($data->tanggal_mulai),"l, d-F-Y") }}</td>
-                                            <td>{{ date_format(date_create($data->tanggal_berakhir),"l, d-F-Y") }}</td>
                                             @if($userRole == 'Admin')
                                             <td>
                                                 <a href="updateDataProduksi{{ $data->id }}">
@@ -109,6 +107,8 @@ $units = ["day","week","third-of-month",
                                                 </a>
                                             </td>
                                             @endif
+                                            <td>{{ date_format(date_create($data->tanggal_mulai),"l, d-F-Y") }}</td>
+                                            <td>{{ date_format(date_create($data->tanggal_berakhir),"l, d-F-Y") }}</td>
                                             <td>
                                                 <table class="table table-bordered table-striped ">
                                                     <thead>
@@ -149,11 +149,11 @@ $units = ["day","week","third-of-month",
                                     <th>Total(Sample)</th>
                                     <th>Target(Sample)</th>
                                     <th>Keterangan</th>
-                                    <th>TGL Mulai</th>
-                                    <th>TGL Berakhir</th>
                                     @if($userRole == 'Admin')
                                     <th>Option</th>
                                     @endif
+                                    <th>TGL Mulai</th>
+                                    <th>TGL Berakhir</th>
                                     <th>Data Lainnya</th>
                                 </tr>
                             </tfoot>
@@ -218,7 +218,7 @@ $units = ["day","week","third-of-month",
                                     </div>
                                     <div class="col-6">
                                         <label for="target_sampel" class="form-label">Target Sampel</label>
-                                        <input type="number" class="form-control" id="target_sampel" name="target_sampel" value="0">
+                                        <input type="number" class="form-control" id="target_sampel" name="target_sampel" value="1" min="1">
                                     </div>
                                 </div>
                             </div>

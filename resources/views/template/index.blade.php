@@ -545,7 +545,7 @@ $userRole = Auth::user()->role;
 
               function test(data){
                 $('.data-info').append(
-                  `<li class="list-group-item">${data.kategori} : ${data.start} sampai ${data.end}</li>`
+                  `<li class="list-group-item">${data.kategori} : ${new Date(data.start).toDateString()} - ${new Date(data.end).toDateString()}</li>`
                 );
               }
             });
@@ -577,7 +577,7 @@ $userRole = Auth::user()->role;
       }else{
         for(let i = 0; i < $(".child_repeat").val(); i++) {
           tag.append(
-              "<div class='col-5 frame-child p-3 m-3 child"+childPageCounter+"'>"+
+              "<div class='col-5 frame-child p-3 m-3 bg-light child"+childPageCounter+"'>"+
                 "<div class='row'>"+
                   "<div class='col'>"+
                       "<label for='child_kategori-kegiatan' class='form-label'>kategori</label>"+
@@ -605,7 +605,7 @@ $userRole = Auth::user()->role;
                 "</div>"+
                 "<div class='row'>"+
                   "<div class='col'>"+
-                    "<p class='text-center fs-4 fw-bold'>"+childPageCounter+"</p>"+
+                    "<p class='text-center fs-4 fw-bold text-dark'>"+childPageCounter+"</p>"+
                   "</div>"+
                 "</div>"+
                 "<div class='row'>"+
@@ -631,7 +631,6 @@ $userRole = Auth::user()->role;
     };
     function toggleAnimation(toggleElements){
     // iterate through object
-    console.log(toggleElements);
       Object.entries(toggleElements).forEach(entry => {
         const [key, value] = entry;
         r_o_a(key, value);
@@ -651,7 +650,6 @@ $userRole = Auth::user()->role;
       Object.entries(toggleElements).forEach(entry => {
         const [key, value] = entry;
         r_o_a(key, value);
-        console.log(key, value);
       });
       
       // $("#" + arguments[0]).removeClass('hide');
